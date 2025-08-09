@@ -25,9 +25,10 @@ def get_secret():
         raise e
 
     secret = get_secret_value_response['SecretString']
+    return json.loads(secret)
 
 credentials = get_secret()
 
 AWS_ACCESS_KEY_ID = credentials.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = credentials.get("AWS_SECRET_ACCESS_KEY")
-AWS_REGION = credentials.get("AWS_REGION",boto3.session.Session().region_name,"us-east-2")
+AWS_REGION = credentials.get("AWS_REGION", "us-east-2")
